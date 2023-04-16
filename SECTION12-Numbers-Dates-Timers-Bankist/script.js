@@ -367,7 +367,7 @@ console.log(parseInt('230_000'));
 
 // Working with BigInt
 
-console.log(2 ** 53 - 1);
+/*console.log(2 ** 53 - 1);
 console.log(Number.MAX_SAFE_INTEGER);
 console.log(2 ** 53 + 0);
 
@@ -394,3 +394,38 @@ console.log(huge + 'is REALLY big');
 // Divisions
 console.log(10n / 3n);
 console.log(10 / 3);
+*/
+
+// Dates and Times
+
+// Create a date
+
+/*const now = new Date();
+console.log(now); // -> the date of today!!
+
+console.log(new Date('Sun Apr 16 2023 02:49:24'));
+console.log(new Date(account1.movementsDates[0])); // will show in the console the movements dates of this account
+
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // will show november as 10 and not 11 bc JS is starting at 0 Jan = 0
+
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // will give 3 days later
+*/
+// working with dates
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime());
+
+console.log(Date.now());
+
+future.setFullYear(2040);
+console.log(future);

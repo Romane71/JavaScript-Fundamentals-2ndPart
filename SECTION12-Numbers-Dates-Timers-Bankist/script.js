@@ -349,7 +349,7 @@ labelBalance.addEventListener('click', function () {
 });
 */
 //
-const diameter = 287_460_000_000;
+/*const diameter = 287_460_000_000;
 console.log(diameter);
 
 const priceCents = 345_99;
@@ -363,3 +363,34 @@ console.log(PI);
 
 console.log(Number('230000'));
 console.log(parseInt('230_000'));
+*/
+
+// Working with BigInt
+
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 0);
+
+console.log(48373874387538574583587538n);
+console.log(BigInt(75487543985738578574573857457));
+
+// Operations
+console.log(10000n + 10000n);
+console.log(48309843483484483484884023n * 100000000000n);
+
+const huge = 3298943947893754897557943n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+// exceptions
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n == 20);
+
+console.log(huge + 'is REALLY big');
+// huge is converted to the number in the console
+
+// Divisions
+console.log(10n / 3n);
+console.log(10 / 3);

@@ -136,31 +136,58 @@ btnScrollTo.addEventListener('click', function (e) {
   );
 
   // scrolling
-  //window.scrollTo(
-  // s1coords.left + window.pageXOffset,
-  // s1coords.top + window.pageYOffset
-  // );
+  window.scrollTo(
+    s1coords.left + window.pageXOffset,
+    s1coords.top + window.pageYOffset
+  );
 
-  //window.scrollTo({
-  // left: s1coords.left + window.pageXOffset,
-  // top: s1coords.top + window.pageYOffset,
-  // behavior: 'smooth',
-  //});
+  window.scrollTo({
+    left: s1coords.left + window.pageXOffset,
+    top: s1coords.top + window.pageYOffset,
+    behavior: 'smooth',
+  });
 
   section1.scrollIntoView({ behavior: 'smooth' });
+});
+///////////////////////////////////////////////////////////////////////////
+// page navigation
+//document.querySelectorAll('.nav__links').forEach(function (el) {
+// el.addEventListener('click', function (e) {
+//e.preventDefault();
+//const id = this.getAttribute('href');
+// console.log(id);
+// document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+// });
+//});
+
+// Event delegation
+
+// 1. ADD EVENT LISTENER TO COMMON PARENT ELEMENT
+// 2. DETERMINE WHAT ELEMENT ORIGINATED THE EVENT
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault(e);
+
+  // MATCHING STRATEGY
+  if (e.target.classList.contains('nav__link')) {
+    e.preventDefault();
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
 });
 
 // Types of events and event handlers
 
-const h1 = document.querySelector('h1');
+//const h1 = document.querySelector('h1');
 
-const alertH1 = function (e) {
-  alert('onmouseenter: Great! You are reading the heading');
-};
+//const alertH1 = function (e) {
+// alert('onmouseenter: Great! You are reading the heading');
+//};
 
-h1.addEventListener('mouseenter', alertH1);
+//h1.addEventListener('mouseenter', alertH1);
 
-setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+//setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
 
 //h1.onmouseenter = function (e) {
 // alert('onmouseenter: Great! You are reading the heading');
@@ -199,3 +226,5 @@ document.querySelector('.nav').addEventListener(
   },
   false
 );
+
+// event delegation

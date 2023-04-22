@@ -43,7 +43,7 @@ console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
 
-const header = document.querySelector('.header');
+//const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
 console.log(allSections);
 
@@ -65,7 +65,7 @@ message.innerHTML =
   'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
 
 //header.prepend(message);
-header.append(message);
+//header.append(message);
 //header.append(message.cloneNode(true));
 
 //header.before(message);
@@ -73,12 +73,13 @@ header.append(message);
 
 //Delete elements
 
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', function () {
-    // message.remove();
-    message.parentElement.removeChild(message);
-  });
+//document
+// .querySelector('.btn--close-cookie')
+// .addEventListener('click', function (e) {
+//  e.preventDefault();
+// message.remove();
+// message.parentElement.removeChild(message);
+//});
 
 // styles
 message.style.backgroundColor = '#37383d';
@@ -231,11 +232,44 @@ const handlerHover = function (e) {
 
 // Sticky navigation
 
-const initialCoords = section1.getBoundingClientRect();
-window.addEventListener('scroll', function (e) {
-  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+//const initialCoords = section1.getBoundingClientRect();
+//window.addEventListener('scroll', function (e) {
+// if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+// else nav.classList.remove('sticky');
+//});
+
+// Sticky navigation: Intersection Observer API
+//const obsCallBack = function (entries, observer) {
+// entries.forEach(entry => {
+//   console.log(entry);
+// });
+//};
+
+//const obsOptions = {
+//  root: null,
+//  treshold: [0, 0.2],
+//};
+
+//const observer = new IntersectionObserver(obsCallBack, obsOptions);
+//observer.observe(section1);
+
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+console.log(navHeight);
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
+};
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  treshold: 0,
+  rootMargin: `-${navHeight}px`,
 });
+headerObserver.observe(header);
 
 // Types of events and event handlers
 

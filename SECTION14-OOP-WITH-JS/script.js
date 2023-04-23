@@ -1,5 +1,6 @@
 'use strict';
 
+//////////////////////////////////////////////////////////////////////
 /*const Person = function (firstName, birthYear) {
   //Instance properties. We can reuse them
   this.firstName = firstName;
@@ -104,6 +105,11 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+  // Static method    // -> 'Hey Romane Van'
+  static hey() {
+    console.log('Hey there');
+    console.log(this);
+  }
 }
 const romane = new PersonCl('Romane Van', 1994);
 console.log(romane);
@@ -139,3 +145,28 @@ console.log(account.latest); // use as a simple property
 
 account.latest = 50;
 console.log(account.movements);
+
+// Object.create
+
+const PersonProto = {
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  },
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+// manually set the steven and alina prototypes to PersonProto
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 1990;
+steven.calcAge();
+
+console.log(steven.__proto__ === PersonProto);
+
+const alina = Object.create(PersonProto);
+alina.init('Alina', 1994);
+alina.calcAge();

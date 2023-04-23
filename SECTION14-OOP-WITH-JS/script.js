@@ -1,6 +1,6 @@
 'use strict';
 
-const Person = function (firstName, birthYear) {
+/*const Person = function (firstName, birthYear) {
   //Instance properties. We can reuse them
   this.firstName = firstName;
   this.birthYear = birthYear;
@@ -70,3 +70,40 @@ console.log(arr.unique()); // extending the prototype of a building object
 
 const h1 = document.querySelector('h1');
 console.dir(x => x + 1);
+
+*/
+//ES6 CLASSES
+// class expression
+//const PersonCl = class {
+//}
+
+//// class declaration
+
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  // Methods will be added to .prototype property of the PersonCl class
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
+  greet() {
+    console.log(`Hey ${this.firstName}`);
+  }
+}
+const romane = new PersonCl('Romane', 1994);
+console.log(romane);
+romane.calcAge();
+
+console.log(romane.__proto__ === PersonCl.prototype);
+
+//PersonCl.prototype.greet = function () {
+///console.log(`Hey ${this.firstName}`);
+//};
+romane.greet();
+
+// 1. classes are NOT hoisted (hoisted = means we can use them BEFORE they are declared in the code)
+//2. Classes are first-class citizens = we can pass them into function and also return them from functions
+//3. Classes are executed in strict mode automatically

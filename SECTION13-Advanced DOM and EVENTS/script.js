@@ -453,3 +453,5 @@ window.addEventListener('load', function (e) {
 //console.log(e);
 // e.returnValue = 'message';
 //});
+
+//Efficient script loading: defer and async

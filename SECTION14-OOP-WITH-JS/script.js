@@ -24,3 +24,25 @@ const jack = new Person('Jake', 1975);
 console.log(matilda, jack);
 
 console.log(romane instanceof Person);
+
+// Prototypes
+
+console.log(Person.prototype);
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+romane.calcAge();
+
+console.log(romane.__proto__);
+console.log(romane.__proto__ === Person.prototype);
+
+console.log(Person.prototype.isPrototypeOf(romane));
+
+//.prototypeOfLinkedObjects
+
+Person.prototype.species = 'Homo Sapiens';
+console.log(romane.species);
+
+console.log(romane.hasOwnProperty('firstName'));

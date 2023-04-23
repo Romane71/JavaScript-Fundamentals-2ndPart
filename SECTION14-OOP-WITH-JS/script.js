@@ -80,8 +80,8 @@ console.dir(x => x + 1);
 //// class declaration
 
 class PersonCl {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
@@ -90,12 +90,25 @@ class PersonCl {
     console.log(2023 - this.birthYear);
   }
   greet() {
-    console.log(`Hey ${this.firstName}`);
+    console.log(`Hey ${this.fullName}`);
+  }
+  get age() {
+    return 2023 - this.birthYear;
+  }
+  // Set a property that already exists
+  set fullName(name) {
+    console.log(name);
+    if (name.includes('')) this._fullName = name; // add _ to avoid conflict
+    else alert(`The given name is not a full name`);
+  }
+  get fullName() {
+    return this._fullName;
   }
 }
-const romane = new PersonCl('Romane', 1994);
+const romane = new PersonCl('Romane Van', 1994);
 console.log(romane);
 romane.calcAge();
+console.log(romane.age);
 
 console.log(romane.__proto__ === PersonCl.prototype);
 
@@ -107,3 +120,22 @@ romane.greet();
 // 1. classes are NOT hoisted (hoisted = means we can use them BEFORE they are declared in the code)
 //2. Classes are first-class citizens = we can pass them into function and also return them from functions
 //3. Classes are executed in strict mode automatically
+
+// Setters and Getters- basically functions that get and set a value, still look like regular properties
+
+const account = {
+  owner: 'Romane',
+  movements: [200, 300, 500, 600],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+console.log(account.latest); // use as a simple property
+
+account.latest = 50;
+console.log(account.movements);

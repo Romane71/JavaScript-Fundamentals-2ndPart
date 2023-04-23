@@ -46,3 +46,27 @@ Person.prototype.species = 'Homo Sapiens';
 console.log(romane.species);
 
 console.log(romane.hasOwnProperty('firstName'));
+
+console.log(romane.__proto__);
+//Object.prototype(type of prototype chain
+
+console.log(romane.__proto__.__proto__);
+console.log(romane.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 4, 5, 6, 7, 8]; // same as using new array === []
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique()); // extending the prototype of a building object
+// Not ideal though
+
+const h1 = document.querySelector('h1');
+console.dir(x => x + 1);

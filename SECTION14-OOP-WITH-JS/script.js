@@ -148,24 +148,24 @@ console.log(account.movements);
 
 // Object.create
 
-const PersonProto = {
-  calcAge() {
-    console.log(2023 - this.birthYear);
-  },
-  init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  },
-};
+//const PersonProto = {
+// calcAge() {
+//  console.log(2023 - this.birthYear);
+//},
+//init(firstName, birthYear) {
+// this.firstName = firstName;
+//this.birthYear = birthYear;
+// },
+//};
 
 // manually set the steven and alina prototypes to PersonProto
-const steven = Object.create(PersonProto);
-console.log(steven);
-steven.name = 'Steven';
-steven.birthYear = 1990;
-steven.calcAge();
+//const steven = Object.create(PersonProto);
+//console.log(steven);
+//steven.name = 'Steven';
+//steven.birthYear = 1990;
+///steven.calcAge();
 
-console.log(steven.__proto__ === PersonProto);
+//console.log(steven.__proto__ === PersonProto);
 
 const alina = Object.create(PersonProto);
 alina.init('Alina', 1994);
@@ -187,7 +187,7 @@ const Student = function (firstName, birthYear, course) {
   this.course = course;
 };
 
-// Linking prototypes
+//Linking prototypes
 Student.prototype = Object.create(Person.prototype);
 
 Student.prototype.introduce = function () {
@@ -206,3 +206,26 @@ console.log(mike instanceof Person);
 Student.prototype.constructor = Student;
 
 console.dir(Student.prototype.constructor);
+
+// Inheritance between 'Classes': ES6 classes
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // Always needs to happen first
+    super(fullName, birthYear);
+    this.course = course;
+  }
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+  calcAge() {
+    console.log(`I'm ${
+      2023 - this.birthYear
+    } years old, but as a student I feel more
+    like ${2023 - this.birthYear + 10} `);
+  }
+}
+
+const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+martha.introduce();
+martha.calcAge();
